@@ -21,8 +21,6 @@ Since I've done already this course, you can ask me aswell, but in Ljubljana, we
 
 Between R and Python, I don't really know which one is better to do first, I would rather say R, since it is more hard because we can tweak everything. And the graphs are better for interpretation. Then, it will be easier to translate it with ChatGPT in Python I guess.
 
-Here a brief breakdown I made with ChatGPT about what should be done. **I've added my opinions in *italics*.**
-
 ### Repartition detailed
 
 #### Calories_burned
@@ -50,6 +48,8 @@ Maybe both for Neural Networks.
 - Then work on the powerpoint during the first two weeks, and we'll be done and we can work on Signal exam and other exams.
 
 ---
+
+Here a brief breakdown I made with ChatGPT about what should be done. **I've added my opinions in *italics*.**
 
 ## **1. Exploratory Data Analysis (EDA) & Data Processing**
 
