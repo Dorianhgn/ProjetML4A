@@ -1,3 +1,4 @@
+## LIBRARIES
 import pandas as pd
 import numpy as np
 
@@ -9,6 +10,8 @@ from sklearn.model_selection import train_test_split
 
 randomseed = 1234
 
+## DATA LOADING AND PREPROCESSING
+# Load the data
 gym = pd.read_csv('../../gym_members_exercise_tracking.csv')
 
 # set 'Gender', 'Workout_Type', 'Workout_Frequency (days/week)' and 'Experience_Level' as categorical

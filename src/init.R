@@ -18,6 +18,33 @@ library(caret)
 # fix random seed for reproducibility
 set.seed(1234)
 
+## GRAPH SETTINGS ##
+# Save original parameters (optional)
+original_par <- par(no.readonly = TRUE)
+
+# Set global scaling factors (1.5x default size)
+par(
+  cex.lab = 1.5,   # Axis labels
+  cex.axis = 1.5,  # Axis text (tick labels)
+  cex.main = 1.5,  # Main title
+  cex.sub = 1.5    # Subtitle
+)
+
+# Define a custom theme with larger fonts
+custom_theme <- theme(
+  text = element_text(size = 16),            # Global text size
+  axis.title = element_text(size = 18),      # Axis labels
+  axis.text = element_text(size = 14),       # Axis tick labels
+  plot.title = element_text(size = 20),      # Main title
+  plot.subtitle = element_text(size = 16)    # Subtitle
+)
+
+# Apply the theme to all future plots
+theme_set(custom_theme)
+
+
+## DATA LOADING & PROCESSING ##
+# Load data
 path <- "../../" # modifier le nombre de ../ si nécessaire
 gym <- read.table(paste(path, "gym_members_exercise_tracking.csv", sep = ""),
                     sep = ",", header = TRUE)
