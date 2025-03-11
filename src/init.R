@@ -18,6 +18,33 @@ library(caret)
 # fix random seed for reproducibility
 set.seed(1234)
 
+## GRAPH SETTINGS ##
+# Save original parameters (optional)
+original_par <- par(no.readonly = TRUE)
+
+# Set global scaling factors (1.5x default size)
+par(
+  cex.lab = 1.5,   # Axis labels
+  cex.axis = 1.5,  # Axis text (tick labels)
+  cex.main = 1.5,  # Main title
+  cex.sub = 1.5    # Subtitle
+)
+
+# Define a custom theme with larger fonts
+custom_theme <- theme(
+  text = element_text(size = 16),            # Global text size
+  axis.title = element_text(size = 18),      # Axis labels
+  axis.text = element_text(size = 14),       # Axis tick labels
+  plot.title = element_text(size = 20),      # Main title
+  plot.subtitle = element_text(size = 16)    # Subtitle
+)
+
+# Apply the theme to all future plots
+theme_set(custom_theme)
+
+
+## DATA LOADING & PROCESSING ##
+# Load data
 path <- "../../" # modifier le nombre de ../ si nécessaire
 gym <- read.table(paste(path, "gym_members_exercise_tracking.csv", sep = ""),
                     sep = ",", header = TRUE)
@@ -28,7 +55,6 @@ gym[,'Experience_Level'] <- as.factor(gym[,'Experience_Level'])
 gym[,'Workout_Frequency..days.week.'] <- as.factor(gym[,'Workout_Frequency..days.week.'])
 
 gym[, "Weight..kg."] <- log(gym[,"Weight..kg."])
-gym[, "BMI"] <- log(gym[,"BMI"])
 
 max_fat <- max(gym[,"Fat_Percentage"])
 gym[, "Fat_Percentage"] <- sqrt((max_fat + 1) - gym[,"Fat_Percentage"])
@@ -37,6 +63,8 @@ gym[, "Fat_Percentage"] <- sqrt((max_fat + 1) - gym[,"Fat_Percentage"])
 names(gym)[names(gym) == "Weight..kg."] <- "LWeight"
 names(gym)[names(gym) == "BMI"] <- "LBMI"
 names(gym)[names(gym) == "Fat_Percentage"] <- "SFat_Percentage"
+
+gym <- gym %>% select(-c(BMI))
 
 # divide data into training and testing sets for experience level
 trainIndex <- createDataPartition(gym$Experience_Level, p = .8, 
