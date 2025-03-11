@@ -55,7 +55,6 @@ gym[,'Experience_Level'] <- as.factor(gym[,'Experience_Level'])
 gym[,'Workout_Frequency..days.week.'] <- as.factor(gym[,'Workout_Frequency..days.week.'])
 
 gym[, "Weight..kg."] <- log(gym[,"Weight..kg."])
-gym[, "BMI"] <- log(gym[,"BMI"])
 
 max_fat <- max(gym[,"Fat_Percentage"])
 gym[, "Fat_Percentage"] <- sqrt((max_fat + 1) - gym[,"Fat_Percentage"])
@@ -64,6 +63,8 @@ gym[, "Fat_Percentage"] <- sqrt((max_fat + 1) - gym[,"Fat_Percentage"])
 names(gym)[names(gym) == "Weight..kg."] <- "LWeight"
 names(gym)[names(gym) == "BMI"] <- "LBMI"
 names(gym)[names(gym) == "Fat_Percentage"] <- "SFat_Percentage"
+
+gym <- gym %>% select(-c(BMI))
 
 # divide data into training and testing sets for experience level
 trainIndex <- createDataPartition(gym$Experience_Level, p = .8, 

@@ -20,14 +20,15 @@ for col in ['Gender', 'Workout_Type', 'Workout_Frequency (days/week)', 'Experien
 
 # log transform Weight and BMI
 gym['Weight (kg)'] = np.log1p(gym['Weight (kg)'])
-gym['BMI'] = np.log1p(gym['BMI'])
 
 # transform 'Fat_Percentage'
 max_fat = gym['Fat_Percentage'].max()
 gym['Fat_Percentage'] = gym['Fat_Percentage'].apply(lambda x: np.sqrt(max_fat+1)-x)
 
 # rename transformed columns
-gym.rename(columns={'Weight (kg)': 'LWeight', 'BMI': 'LBMI', 'Fat_Percentage': 'SFat_Percentage'}, inplace=True)
+gym.rename(columns={'Weight (kg)': 'LWeight', 'Fat_Percentage': 'SFat_Percentage'}, inplace=True)
+
+gym.drop(columns=['BMI'], inplace=True)
 
 # divide into train and test set
 gym_train, gym_test = train_test_split(gym, test_size=0.2, random_state=randomseed)
