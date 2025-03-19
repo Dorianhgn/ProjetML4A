@@ -33,16 +33,36 @@ gym.drop(columns=['BMI'], inplace=True)
 # divide into train and test set
 gym_train, gym_test = train_test_split(gym, test_size=0.2, random_state=randomseed)
 
+# Create gym_train_scale, gym_test_scale
+gym_train_scale = gym_train.copy()
+gym_test_scale = gym_test.copy()
+
+# Scale the data
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+gym_train_scale[['LWeight', 'Height (m)', 'Max_BPM', 'Avg_BPM', 'Resting_BPM', 'Session_Duration (hours)',
+                             'Water_Intake (liters)', 'SFat_Percentage', 'Workout_Frequency (days/week)', 'Calories_Burned']] = scaler.fit_transform(gym_train_scale[['LWeight', 'Height (m)', 'Max_BPM', 'Avg_BPM', 'Resting_BPM', 'Session_Duration (hours)',
+                             'Water_Intake (liters)', 'SFat_Percentage', 'Workout_Frequency (days/week)', 'Calories_Burned']])
+
+gym_test_scale[['LWeight', 'Height (m)', 'Max_BPM', 'Avg_BPM', 'Resting_BPM', 'Session_Duration (hours)',
+                             'Water_Intake (liters)', 'SFat_Percentage', 'Workout_Frequency (days/week)', 'Calories_Burned']] = scaler.transform(gym_test_scale[['LWeight', 'Height (m)', 'Max_BPM', 'Avg_BPM', 'Resting_BPM', 'Session_Duration (hours)',
+                             'Water_Intake (liters)', 'SFat_Percentage', 'Workout_Frequency (days/week)', 'Calories_Burned']])
+
+
 # Create X_train_exp_level, X_test_exp_level, y_train_exp_level, y_test_exp_level
 X_train_exp_level = gym_train.drop(columns=['Experience_Level'])
+X_train_exp_level_scale = gym_train_scale.drop(columns=['Experience_Level'])
 y_train_exp_level = gym_train['Experience_Level']
 X_test_exp_level = gym_test.drop(columns=['Experience_Level'])
+X_test_exp_level_scale = gym_test_scale.drop(columns=['Experience_Level'])
 y_test_exp_level = gym_test['Experience_Level']
 
 # Create X_train_calories, X_test_calories, y_train_calories, y_test_calories
 X_train_calories = gym_train.drop(columns=['Calories_Burned'])
+X_train_calories_scale = gym_train_scale.drop(columns=['Calories_Burned'])
 y_train_calories = gym_train['Calories_Burned']
 X_test_calories = gym_test.drop(columns=['Calories_Burned'])
+X_test_calories_scale = gym_test_scale.drop(columns=['Calories_Burned'])
 y_test_calories = gym_test['Calories_Burned']
 
 print("Data loaded and preprocessed")

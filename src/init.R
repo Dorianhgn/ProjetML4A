@@ -61,7 +61,6 @@ gym[, "Fat_Percentage"] <- sqrt((max_fat + 1) - gym[,"Fat_Percentage"])
 
 # renome les variables Weight..kg. et BMI en LWeight et LBMI
 names(gym)[names(gym) == "Weight..kg."] <- "LWeight"
-names(gym)[names(gym) == "BMI"] <- "LBMI"
 names(gym)[names(gym) == "Fat_Percentage"] <- "SFat_Percentage"
 
 gym <- gym %>% select(-c(BMI))
@@ -73,23 +72,44 @@ trainIndex <- createDataPartition(gym$Experience_Level, p = .8,
 gym_train <- gym[ trainIndex,]
 gym_test  <- gym[-trainIndex,]
 
-# Create X_train and y_train for Experience_Level
-X_train_exp_level <- gym_train[, -which(names(gym_train) == "Experience_Level")]
-y_train_exp_level <- gym_train$Experience_Level
-X_test_exp_level <- gym_test[, -which(names(gym_test) == "Experience_Level")]
-y_test_exp_level <- gym_test$Experience_Level
+# Normalize the data
+gym_train_scaled = gym_train
+scaler <- scale(gym_train[,-c(2,10,13,14)])
 
-# divide data into training and testing sets for calories burned
-trainIndex <- createDataPartition(gym$Calories_Burned, p = .8, 
-                                  list = FALSE, 
-                                  times = 1)
-gym_train_calories <- gym[ trainIndex,]
-gym_test_calories  <- gym[-trainIndex,]
+# Extract the center and scale attributes
+center <- attr(scaler, "scaled:center")
+scale <- attr(scaler, "scaled:scale")
 
-# Create X_train and y_train for Calories_Burned
-X_train_calories <- gym_train_calories[, -which(names(gym_train_calories) == "Calories_Burned")]
-y_train_calories <- gym_train_calories$Calories_Burned
-X_test_calories <- gym_test_calories[, -which(names(gym_test_calories) == "Calories_Burned")]
-y_test_calories <- gym_test_calories$Calories_Burned
+gym_train_scaled[,-c(2,10,13,14)] <- scale(gym_train[,-c(2,10,13,14)], center = center, scale = scale)
 
-print("Data loaded and preprocessed")
+gym_test_scaled = gym_test
+gym_test_scaled[,-c(2,10,13,14)] <- scale(gym_test[,-c(2,10,13,14)], center = center, scale = scale)
+
+
+cat("Data loaded and preprocessed")
+
+
+## FUNCTION DEFINITIONS ##
+
+# Function to plot residuals
+# x: predicted values
+# y: residuals
+gplot.res <- function(x, y, titre = "titre"){
+    ggplot(data.frame(x=x, y=y),aes(x,y))+
+    geom_point(col = "blue")+#xlim(0, 250)+ylim(-155, 155)+
+    ylab("Résidus")+ xlab("Valeurs prédites")+
+    ggtitle(titre)+
+    geom_hline(yintercept = 0,col="green")
+}
+
+# Function to plot ROC curve
+# model: model to evaluate
+# data: data to evaluate
+# title: title of the plot
+plot_roc <- function(model, data, title = "ROC curve"){
+    pred <- predict(model, data, type = "response")
+    roc <- roc(data$Experience_Level, pred)
+    auc <- round(auc(roc), 2)
+    plot(roc, main = title)
+    text(0.8, 0.2, paste("AUC = ", auc), cex = 1.5)
+}
