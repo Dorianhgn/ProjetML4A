@@ -47,6 +47,10 @@ Maybe both for Neural Networks.
 - Do the big review beginning of May (combining notebooks, etc)
 - Then work on the powerpoint during the first two weeks, and we'll be done and we can work on Signal exam and other exams.
 
+### Additionnal things to do
+
+**Add for each alogrithm the time that it takes to find the best params, or just to run, to compare each method !!!**
+
 ---
 
 Here a brief breakdown I made with ChatGPT about what should be done. **I've added my opinions in *italics*.**
