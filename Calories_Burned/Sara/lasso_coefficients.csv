@@ -1,0 +1,47 @@
+,0
+Age,-40.419803564898885
+Age Session_Duration (hours),-10.064556953075398
+Age Avg_BPM,-2.3543636236049132
+Workout_Frequency (days/week)_4 Workout_Frequency (days/week)_5,-1.6509514648228008
+Age Gender_Male,-1.127823488584173
+Age Water_Intake (liters),-0.9223592337428173
+Height (m) Workout_Type_HIIT,-0.8926876523830565
+LWeight Max_BPM,-0.7601609122295276
+Workout_Type_Strength Experience_Level_2,-0.5315522300172935
+Max_BPM Water_Intake (liters),-0.48926300712805115
+Workout_Type_Yoga Experience_Level_2,-0.44951407859259135
+Avg_BPM Workout_Frequency (days/week)_3,-0.38979850591691567
+Workout_Type_HIIT Workout_Frequency (days/week)_5,-0.3593315503223634
+Workout_Frequency (days/week)_5 Experience_Level_2,-0.13565357869575287
+Max_BPM Avg_BPM,-0.11321434195249738
+Height (m) Avg_BPM,-0.04461873980710972
+Age SFat_Percentage,-0.01882114743372835
+Height (m) Experience_Level_2,0.04722915546659482
+LWeight Resting_BPM,0.0621515047315225
+Resting_BPM Workout_Type_Yoga,0.1867532282212837
+LWeight Avg_BPM,0.21806412420168209
+LWeight Session_Duration (hours),0.25708379135296083
+Height (m) Workout_Frequency (days/week)_4,0.296068698594388
+Workout_Type_Strength Workout_Frequency (days/week)_5,0.31868594829453156
+LWeight,0.3759621610638249
+Height (m) Max_BPM,0.4125875626483542
+SFat_Percentage,0.43018070658156954
+Resting_BPM Experience_Level_2,0.43282569389236847
+Session_Duration (hours) Workout_Type_Strength,0.433550846139304
+Session_Duration (hours) Workout_Frequency (days/week)_5,0.43929426771894114
+Workout_Type_Strength,0.7792388669483133
+Avg_BPM Resting_BPM,0.7862045418370452
+Workout_Type_Strength Experience_Level_3,0.8506202301221426
+Avg_BPM Workout_Frequency (days/week)_4,0.8915012746547656
+Resting_BPM SFat_Percentage,0.9420174111261593
+Avg_BPM SFat_Percentage,0.9720064543780752
+Max_BPM Workout_Frequency (days/week)_5,1.0663236700167642
+Max_BPM Workout_Frequency (days/week)_3,1.098071968990597
+Workout_Type_HIIT Workout_Type_Yoga,1.1892662744136355
+Height (m) Workout_Type_Strength,1.7833438048789032
+Avg_BPM Gender_Male,3.572415752146319
+Session_Duration (hours) Gender_Male,11.42632890115336
+Avg_BPM Session_Duration (hours),21.439272845298483
+Gender_Male,42.050232226909294
+Avg_BPM,89.9366510500674
+Session_Duration (hours),240.96674606610406
